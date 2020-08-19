@@ -1,0 +1,377 @@
+{% extends 'main/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<style type="text/css">
+	#home-Div1-innerDiv1 {
+		position: relative;
+		width: 50%;
+		left: 20%;
+		float: left;
+		/*
+		background-image: url("{% static 'images/stockWinner_01.png' %}");
+		background-size: 60% 80%;
+		*/
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#home-Div1-innerDiv2 {
+		position: relative;
+		width: 45%;
+		right: 5%;
+		font-weight: bold;
+		font-size: 3rem;
+		text-align: center; 
+		float: left;
+	}
+	.welcome {
+		text-align: center;
+		margin: 0px auto;
+		max-width: 100%;
+		padding: 40px;
+		color: #333;
+		overflow: hidden;
+	}
+	.welcome h1{
+		font-size: 24px;
+		text-transform: uppercase;
+		display: inline-block;
+		border-bottom: 4px solid;
+		padding-bottom: 10px;
+	}
+	.welcome .block{
+	  float: left;
+	  width: calc(90% / 2);
+	  overflow: hidden;
+	  padding: calc(5%/4);
+	  text-align: center;
+	  font-size: 3rem;
+	  font-weight: bold;
+	}
+	.our-service {
+		background-color: rgb(255,255,255);
+		text-align: center;
+		margin: 0px auto;
+		max-width: 100%;
+		padding: 40px;
+		color: #333;
+		overflow: hidden;
+	}
+	.our-service h1{
+		font-size: 24px;
+		text-transform: uppercase;
+		display: inline-block;
+		border-bottom: 4px solid;
+		padding-bottom: 10px;
+	}
+	.our-service .block{
+	  float: left;
+	  width: calc(80% / 3);
+	  overflow: hidden;
+	  padding: calc(20%/6);
+	  transition: 0.4s;
+	  text-align: left;
+	}
+	.core-technology {
+		background-color: rgb(0,0,0,0.5);
+		text-align: center;
+		margin: 0px auto;
+		max-width: 100%;
+		padding: 40px;
+		color: white;
+		overflow: hidden;
+	}
+	.core-technology h1{
+		font-size: 24px;
+		text-transform: uppercase;
+		display: inline-block;
+		border-bottom: 4px solid;
+		padding-bottom: 10px;
+	}
+	.core-technology .block{
+	  float: left;
+	  width: calc(80% / 2);
+	  overflow: hidden;
+	  padding: calc(20%/4);
+	  transition: 0.4s;
+	  text-align: left;
+	}
+	footer {
+		background-color: dimgray;
+		width: 100%;
+		color: white;
+		display: flex;
+		justify-content: space-around;
+		text-align: center;
+	}
+</style>
+
+<style>
+
+a {
+  text-decoration:none;
+  color:#FFF;
+}
+.rainbow-button {
+  width:calc(20vw + 6px);
+  height:calc(8vw + 6px);
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-transform:uppercase;
+  font-size:3vw;
+  font-weight:bold;
+}
+.rainbow-button:after {
+  content:attr(alt);
+  width:20vw;
+  height:8vw;
+  background-color:#191919;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-button:hover {
+  animation:slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
+}
+
+
+.rainbow-button2 {
+  width:calc(20vw + 6px);
+  height:calc(8vw + 6px);
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-transform:uppercase;
+  font-size:3vw;
+  font-weight:bold;
+}
+.rainbow-button2:after {
+  content:attr(alt);
+  width:20vw;
+  height:8vw;
+  background-color:#191919;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  
+}
+.rainbow-button2:hover {
+  animation:slidebg 2s linear infinite;
+}
+</style>
+
+
+<div class="welcome">
+	<div>
+		<div class="block">
+			<img src = "{% static 'alpha.png' %}" width="353" height="371">
+		</div>
+		<div class="block" style="border:5px #333 solid;">
+	  		<p>歡迎來到</p>
+	  		<p>客服智能工作臺</p>
+			 <!-- <form id="infoForm" method="post" action=""> -->
+	            <!-- {% if not user.is_authenticated %} -->
+	            	<!-- <input type="button" id="input-style1" onclick="location.href='http://127.0.0.1:8000/accounts/login/';"  -->
+	            	<!-- value="立即使用" /> -->
+	            	<!-- &nbsp; -->
+	            <!-- {% endif %} -->
+	            <!-- <input type="button" id="input-style1" onclick="location.href='http://127.0.0.1:8000/developmentTeam/';"  -->
+	            	<!-- value="聯絡我們" /> -->
+			 <!-- </form> -->
+                <!-- <p style="font-size: 1rem;">&nbsp{{ans_text}}</p> -->
+                <!-- <p style="font-size: 1rem;">&nbsp{{ans_text2}}</p> -->
+
+                    
+                <div class="wrapper">
+                    {% for prediction in top_three_ensemble %}
+                        <button class=" box">{{ prediction }}</button>
+                    {% endfor %}
+                </div>
+                
+                <style>
+                    .wrapper {
+                      display: grid;
+                      grid-template-columns: repeat(3, 1fr);
+                      grid-gap: 10px;
+                      background-color: #fff;
+                      color: #444;
+                    }
+
+                    .box {
+                      background-color: #444;
+                      color: #fff;
+                      border-radius: 5px;
+                      padding: 20px;
+                      font-size: 80%;
+                    }
+                </style>
+                
+                {% if top_three_ensemble %}
+                <p style="font-size:20px">其他選項</p>
+                
+                <table>
+                  <tr>
+                    <td><button class=" box2">數位金融 - 數位存款帳戶</button></td>
+                    <td><button class=" box2">數位金融 - 網路銀行</button></td>
+                    <td><button class=" box2">數位金融 - 行動銀行</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class=" box2">數位金融 - LINE個人化服務</button></td>
+                    <td><button class=" box2">數位金融 - 網路ATM</button></td>
+                    <td><button class=" box2">行動支付 - Fitbit Pay</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class=" box2">行動支付 - Hami Pay</button></td>
+                    <td><button class=" box2">基金投資</button></td>
+                    <td><button class=" box2">貸款</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class=" box2">信託</button></td>
+                    <td><button class=" box2">ATM相關服務</button></td>
+                    <td><button class=" box2">信用卡</button></td>
+                  </tr>
+                  <tr>
+                    <td><button class=" box2">綜合對帳單</button></td>
+                    <td><button class=" box2">MyBill 輕鬆繳</button></td>
+                    <td><button class=" box2">存款帳戶</button></td>
+                  </tr>
+                </table>
+                
+                {% endif %}
+                
+                <style>
+                    table, td, th {  
+                      text-align: left;
+                    }
+
+                    table {
+                      border-collapse: collapse;
+                      width: 100%;
+                    }
+
+                    th, td {
+                      padding: 5px;
+                      font-size: 30%;
+                    }
+                    .box2 {
+                      background-color: #444;
+                      color: #fff;
+                      border-radius: 5px;
+                      padding: 5px;
+                      font-size: 80%;
+                      width: 100%;
+                    }
+                </style>
+
+                    
+                    
+		</div>
+	</div>
+</div>
+
+<div class="core-technology">
+	<h1>關於智能工作臺--AI應用</h1>
+	<p>客戶電話進線時，能夠依照客戶描述問題透過 Tensorflow 訓練模型進行即時分析後於工作台畫面顯示 3 個客戶可能發問的服務場景連結，讓客服人員可以直接點選處理問題，加速處理速度。</p>
+    
+    <div class="block">
+        <a href="/main/recommend_categories/audio/ajax_calls/" class="rainbow-button" alt="接聽電話"></a>
+    </div>
+    
+    <div class="block">
+        <a href="/main/demo4" class="rainbow-button2" alt="掛斷電話"></a>
+    </div>
+    <!-- <p>{{ans_text}}</p> -->
+    <!-- <p>{{ans_text2}}</p> -->
+    
+    
+    
+	<!-- <div class="embed-responsive embed-responsive-16by9"> -->
+		<!-- <iframe width="773" height="434" src="https://www.youtube.com/embed/iDxIqQIykxA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+	<!-- </div> -->
+	
+</div>
+
+<div class="our-service">
+	<h1>我們提供的服務</h1>
+    <h3>降低成本、提升客戶滿意度</h3>
+	<div>
+		<div class="block">
+			<i class="fas fa-gamepad" style="font-size:60px;color:lightblue;"></i>
+			<h4>加速客服處理速度</h4>
+			<p>客服人員不在需要一步一步的操作系統，並且一層一層的點選標籤，而是會由AI直接提供標籤類別，使用本系統可以減去了中間花費的許多時間，加速整體客服人員的服務速度，也能夠縮減顧客平均的等待時間。</p>
+		</div>
+		<div class="block">
+			<i class="fas fa-chess-knight" style="font-size:60px;color:gray;"></i>
+			<h4>減輕客服壓力</h4>
+			<p>減輕客服人員在接聽電話時需要操作系統，又需要聆聽客戶需求同時作業的壓力，同時降低客服人員負荷量，客服人員能夠專心解決客戶的問題，如果你在找尋一個智能又方便的新世代客服平台，選我準沒錯!</p>
+		</div>
+		<div class="block">
+			<i class="fas fa-robot" style="font-size:60px;color:lightgreen;"></i>
+			<h4>提升客戶滿意度</h4>
+			<p>客服人員不需要同時操作系統和與客戶溝通，可以專心服務客戶，解決客戶問題。同時客戶在等待進線的時間因為服務流程的加速，等待時間也縮短了，所以客戶會對這個系統感到很滿意，客戶滿意度有所提升。</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- <div class="core-technology"> -->
+	<!-- <h1>核心技術</h1> -->
+	<!-- <p>我們使用「深度強化學習」的技術來打造投資機器人，相較於以往的由投資顧問僅限上班時間提供的交易建議，我們的投資機器人沒有使用時間限制，且模擬投資過數千數萬次股票交易，經驗更加豐富。又相較於一般的機器學習方法，使用強化學習，不再只是「預測」，而是真正的「提出交易決策」給使用者參考。</p> -->
+	<!-- <div> -->
+		<!-- <div class="block"> -->
+			<!-- <i class="fas fa-network-wired" style="font-size:60px;"></i> -->
+			<!-- <h4>DQN(Deep Q Network) - 深度強化學習網路</h4> -->
+			<!-- <p>DQN是一種結合「深度學習」和「強化學習」的神經網路架構，它和一般機器學習的不同之處在於——深度強化學習是透過「實驗」而非模擬來學習。簡單來說就是給定一個「環境」，在訓練的過程中，「代理人」(即模型本身)會根據現有的「狀態」不斷地做出行動，而每一次做出行動之後，環境將給予代理人「獎勵」(或是懲罰)，代理人就能根據之前行動結果所累積下來的經驗，逐漸修正自身的行為，最後發展出一套能讓目標獎勵最大化的決策策略。</p> -->
+
+			<!-- <p>套用到股市的問題上，「環境」就是我們現實中的股市；「狀態」是我們整理後的價量指標；「代理人」是我們的神經網路；「行動」則是是資產的出入；「獎勵」則是我們設計的獎勵公式，獎勵公式對代理人的績效至關重要，因此我們將代理人獲得的獎勵與累積報酬率掛勾，開發出符合投資需求的代理人。而我們的獎勵公式最終目標是最大化一段時間的累積報酬率。</p> -->
+
+			<!-- <p>在強化學習的架構之下，訓練出來的模型不再只是預測未來股價，而是能夠直接做出最佳決策的強AI。</p> -->
+		<!-- </div> -->
+
+		<!-- <div class="block"> -->
+			<!-- <i class="fas fa-filter" style="font-size:60px;color:pink;"></i> -->
+			<!-- <h4>菁英篩選機制</h4> -->
+			<!-- <p>由於我們訓練的資料仍只是過去的一部份，不但無法涵蓋過去的所有波動，更不可能知道未來的變動，這代表即便我們用歷史資料做過回測了，但過去的優良績效仍舊無法保證未來的獲利。因此，我們採用該機制找出影響神經網路決策的因素和決定報酬率的關鍵，確保我們的模型在未來也會有一定的預測能力。</p> -->
+			<!-- <p>我們大致可以將龐大的資料集解構成以下五點要素：<br> -->
+				<!-- 1.	神經網路架構<br> -->
+				<!-- 2.	神經網路決策軌跡<br> -->
+				<!-- 3.	市場狀態軌跡<br> -->
+				<!-- 4.	agent對未來獎勵總值的價值評估<br> -->
+				<!-- 5.	合成特徵<br> -->
+			<!-- 根據菁英篩選機制的設計，解構神經網路決策因素，使我們能夠找出最容易賺錢的數個神經網路，作為提供服務的主引擎。</p> -->
+		<!-- </div> -->
+
+	<!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="our-service" style="background-color: rgb(255,255,255,0.5)"> -->
+	<!-- <h1>宣傳海報</h1> -->
+	<!-- <br> -->
+	<!-- <div class="pe"> -->
+		<!-- <img src="{% static 'alpha2.png' %}", alt="", width="450px", height="636px"> -->
+	<!-- </div> -->
+<!-- </div> -->
+
+<footer>
+	<p>Copyright @ 2020 CATHAY | All Rights Reserved</p>
+</footer>
+
+
+
+  
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>
+
+<script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.5.1.js"></script>
+<script>
+$(function(){
+    var current = location.pathname;
+    $('#nav li a').each(function(){
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        <!-- alert($this.attr('href').indexOf(current)); -->
+        if($this.attr('href').indexOf(current) !== -1){
+            $this.addClass('active');
+        }
+    });
+    if(current == "{% url 'getRecommendCategoriesAjaxByAudioFile' %}") {
+        $('a[href*="/main/demo2"]').addClass('active');
+    }
+    if(current == "{% url 'getRecommendCategoriesAjaxByAudio' %}") {
+        $('a[href*="/main/demo4"]').addClass('active');
+    }
+})
+</script>
+</head>
+<body>
+<div>
+<ul id="nav">
+  <li><a href="/main/demo1">demo1(文字轉語音)</a></li>
+  <li><a href="/main/demo2">demo2(選擇wav黨)</a></li>
+  <li><a href="/main/demo3/?customerText=我想要查一下上個月的帳單">demo3(url get)</a></li>
+  <li><a href="/main/demo4">demo4(即時語音)</a></li>
+</ul>
+</div>
+
+<div class='container'>
+    <!-- <h1>DEMO</h1> -->
+    <!-- <h2>this is a demo!!</h2> -->
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

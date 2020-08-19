@@ -1,0 +1,32 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+    <h1>DEMO</h1>
+    <h2>this is a demo!!</h2>
+    <form>
+      <label for="customerText">請輸入客服字串:</label><br>
+      <input type="text" id="customerText" name="customerText" value="我要查一下上個月的帳單"><br>
+      <button type="button" id='get_recommend_categories'>提交</button>
+    </form> 
+    
+    <p id="result"></p>
+    
+    <!-- <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script>
+        $(document).ready(function(){
+          $("#get_recommend_categories").click(function(){
+            var customerText = $("#customerText").val();
+            $("#result").html('輸入字串: ' + customerText);
+            $("#customerText").val("");
+            $.get("recommend_categories/ajax_calls",{'customerText':customerText}, function(ret){
+                for (var i=0; i< ret.recommendCategories.length; i++){
+                    var para = document.createElement("P"); // Create a <p> element
+                    para.innerHTML = ret.recommendCategories[i]; // Insert text
+                    document.getElementById("result").appendChild(para);
+                }
+                
+            })
+          });
+        });
+    </script>
+{% endblock %}

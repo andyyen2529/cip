@@ -1,0 +1,34 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+    <h1>DEMO</h1>
+    <h2>this is a demo!!</h2>
+    <form enctype="multipart/form-data" method="post" action="/main/recommend_categories/audio_file/ajax_calls/">
+        {% csrf_token %}
+        <input type="file" name="audio_file">
+        <input type="submit" value="提交">
+    </form> 
+    
+   
+    
+    <p>{{ans_text}}</p>
+    <p>{{ans_text2}}</p>
+  
+    <!-- <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <!-- <script> -->
+        <!-- $(document).ready(function(){ -->
+          <!-- $("#get_recommend_categories").click(function(){ -->
+            <!-- var customerText = $("#customerText").val(); -->
+     
+            <!-- $.get("recommend_categories/ajax_calls",{'customerText':customerText}, function(ret){ -->
+                <!-- for (var i=0; i< ret.recommendCategories.length; i++){ -->
+                    <!-- var para = document.createElement("P"); // Create a <p> element -->
+                    <!-- para.innerHTML = ret.recommendCategories[i]; // Insert text -->
+                    <!-- document.getElementById("result2").appendChild(para); -->
+                <!-- } -->
+                
+            <!-- }) -->
+          <!-- }); -->
+        <!-- }); -->
+    <!-- </script> -->
+{% endblock %}

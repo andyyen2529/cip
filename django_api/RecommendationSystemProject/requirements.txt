@@ -1,0 +1,22 @@
+# 執行django專案至少要安裝
+#python=3.6
+# also need to download dll
+# https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
+tensorflow
+
+#https://pypi.python.org/pypi/SpeechRecognition/
+SpeechRecognition
+
+Pyaudio
+
+jieba
+
+django==2.2
+
+
+
+#以下是要跑jupyter的檔案的話也需要安裝
+#pandas
+#xlrd
+#sklearn
+#matplotlib
