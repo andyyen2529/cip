@@ -11,7 +11,7 @@ Pyaudio
 
 jieba
 
-django==2.2.13
+django==2.2.18
 
 
 
